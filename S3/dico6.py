@@ -1,32 +1,32 @@
-class Personne:
+import os
+import re
+import sys
 
-    # le constructeur - vous ignorez le paramètre self,
-    # on pourra construire une personne à partir de 
-    # 3 paramètres
-    def __init__(self, nom, age, email):
-        self.nom = nom
-        self.age = age
-        self.email = email
-        
-    # je définis cette méthode pour avoir
-    # quelque chose de lisible quand je print()
-    def __repr__(self):
-        return f"{self.nom} ({self.age} ans) sur {self.email}"
-    
-personnes2 = [
-    Personne('pierre', 25, 'pierre@foo.com'),
-    Personne('paul', 18, 'paul@bar.com'),
-    Personne('jacques', 52, 'jacques@cool.com'),
-] 
-print(personnes2[0])
 
-index2 = {personne.nom : personne for personne in personnes2}
-print(index2['pierre'])
+filename=r"graph1.txt"
 
-print("**"*10)
-annuaire ={'marc':22, 'toto': 33, 'titi':66}
-annuaire['marc']=60
-print(annuaire)
-print(annuaire.get('marc', 50))
-annuaire.setdefault('marc', 666)
-print(annuaire)
+def graph_dict(filename):
+    if os.path.exists(filename):
+         with open(filename, "r", encoding='utf-8') as lines:
+             try:
+                 print("***"*10)
+                 #dico = {}
+                 #pattern = re.compile(r"[\w]{1} [0-9]+ [\w]{1}", re.UNICODE)
+                 pattern = re.compile(r"[\w]{1} [0-9]+ [\w]{1}", re.UNICODE)
+                 for line in lines :
+                     print(line)
+                     sd = pattern.search(line)
+                     print(sd, ', ', type(sd))
+                     print(sd.groupdict())
+                     #dico.append
+                 print("***"*10)    
+             except IOError as e:
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
+                print ("Unexpected error:", sys.exc_info()[0])  
+             except: #handle other exceptions such as attribute errors
+                print ("Unexpected error:", sys.exc_info()[0])            
+                print("erreur sur le fichier {}".format(filename))
+    else:
+        print("oups!!")
+
+graph_dict(filename)
