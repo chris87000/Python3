@@ -1,18 +1,19 @@
 from pathlib import Path
 import os
 
-ifilename=r"F:\Python3\S3\in_file_exo.txt"
-ofilename=r"F:\Python3\S3\out_file_exo.txt"
+ifilename=r"in_file_exo.txt"
+ofilename=r"out_file_exo.txt"
 
 def comptage(in_filename, out_filename):
     if os.path.exists(in_filename):
-        with open(in_filename, "r", encoding='utf-8') as lines_in_file, open(out_filename, "w", encoding='utf-8') as lines_out_file:
+        with open(in_filename, "r", encoding='utf-8') as lines_in_file,\
+         open(out_filename, "w", encoding='utf-8') as lines_out_file:
             try:
                 i=1
                 sep=":"
                 oline=None
                 for iline in line_in_file:
-                    oline=
+                    oline=""
                     print(line, end='')
                     lines_out_file.write("{}{}{}".format(i,sep,iline))
                     
