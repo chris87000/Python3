@@ -23,3 +23,4 @@ for personne in personnes:
     print("--> liste de couples cle/valeur",list(personne.items()), ", ", type(list(personne.items())))
     for info, valeur in list(personne.items()):
         print(f"{info} -> {valeur}")
+#####
