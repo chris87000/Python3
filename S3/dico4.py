@@ -23,4 +23,13 @@ for personne in personnes:
     print("--> liste de couples cle/valeur",list(personne.items()), ", ", type(list(personne.items())))
     for info, valeur in list(personne.items()):
         print(f"{info} -> {valeur}")
-#####
+
+print("#####"*10 )   
+# on crée un index permettant de retrouver rapidement
+# une personne dans la liste
+index_par_nom =  {personne['nom']: personne for personne in personnes}
+print("enregistrement pour pierre", index_par_nom['pierre'])
+
+print("#####"*10 ) 
+for nom, record in index_par_nom.items():
+    print(f"Nom : {nom} -> enregistrement : {record}")      
