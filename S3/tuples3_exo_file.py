@@ -24,3 +24,4 @@ def comptage(in_filename, out_filename):
                 print("erreur sur le fichier{}".format(ifilename))
 
 comptage(ifilename,ofilename)
+# "test"
