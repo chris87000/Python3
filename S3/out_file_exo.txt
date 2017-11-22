@@ -1,0 +1,18 @@
+1:6:39:Two households, both alike in dignity,
+2:8:40:In fair Verona, where we lay our scene,
+3:7:41:From ancient grudge break to new mutiny,
+4:7:45:Where civil blood makes civil hands unclean.
+5:6:41:Lorem ipsum dolor sit amet, consectetuer
+6:6:39:adipiscing elit, sed diam nonummy nibh
+7:5:36:euismod tincidunt ut laoreet dolore
+8:6:37:magna aliquam erat volutpat. Ut wisi
+9:6:35:enim ad minim veniam, quis nostrud
+10:7:47:Rappelez-vous l'objet que nous vîmes, mon âme,
+11:6:29:Ce beau matin d'été si doux:
+12:7:43:Au détour d'un sentier une charogne infâme
+13:6:29:Sur un lit semé de cailloux,
+14:0:1:
+15:8:47:Les jambes en l'air, comme une femme lubrique,
+16:5:31:Brûlante et suant les poisons,
+17:6:43:Ouvrait d'une façon nonchalante et cynique
+18:4:32:Son ventre plein d'exhalaisons.
