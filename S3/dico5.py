@@ -19,3 +19,6 @@ personnes2 = [
     Personne('jacques', 52, 'jacques@cool.com'),
 ] 
 print(personnes2[0])
+
+index2 = {personne.nom : personne for personne in personnes2}
+print(index2['pierre'])
