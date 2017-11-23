@@ -1,7 +1,5 @@
 import os
-import re
 import sys
-from collections import defaultdict
 from pprint import pprint
 import json
 
@@ -45,33 +43,45 @@ import json
 #                  -3.509307,
 #                  '2013-10-08T22:56:00')]}
 #===============================================================================
-
-    
-
   
-def merge(extended_tab, abbreviated_tab):
+def merge(extended_file, abbreviated_file):
     #dico = defaultdict(list)
     ex_dico = {}
     ab_dico = {}
-    
-    for tab in abbreviated_tab:
-         #[ 227254910, 49.91799, -5.315172,'2013-10-08T22:59:00'],
-        (id, position_etendu, position_abrege, gmt_time) =  tab
-        #print((id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache))
-        if id not in ab_dico:
-            ab_dico[id]= (position_etendu, position_abrege, gmt_time)    
-          
-    for tab in extended_tab:
-        #id -> [ nom_bateau, code_pays, position_etendu, position_abrege ]
-        # [ 227254910, 49.94479, -5.137455,'2013-10-08T21:51:00','LAURELINE','FR','','CHERBOURG']
-        (id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache) =  tab
-        #print((id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache))
-        if id not in ex_dico:
-            ex_dico[id]= [nom_bateau, code_pays,(position_etendu, position_abrege, gmt_time),ab_dico.get(id)]
+    #if os.path.exists(extended_file) and os.path.exists(abbreviated_file):
+    with open(extended_file, "r", encoding='utf-8') as feed:
+        extended_full = json.load(feed)
+        with open(abbreviated_file, "r", encoding='utf-8') as feed:
+            abbreviated_full = json.load(feed)
+            try:
+                for abline in abbreviated_full :
+                     #[ 227254910, 49.91799, -5.315172,'2013-10-08T22:59:00'],
+                    #print(list(abline))
+                    (id, position_etendu, position_abrege, gmt_time) =  abline
+                    #print((id, position_etendu, position_abrege, gmt_time))
+                    if id not in ab_dico:
+                        ab_dico[id]= (position_etendu, position_abrege, gmt_time)    
+                      
+                for exline in extended_full:
+                    #id -> [ nom_bateau, code_pays, position_etendu, position_abrege ]
+                    # [ 227254910, 49.94479, -5.137455,'2013-10-08T21:51:00','LAURELINE','FR','','CHERBOURG']
+                    (id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, *truc) =  exline
+                    #print((id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache))
+                    if id not in ex_dico:
+                        ex_dico[id]= [nom_bateau, code_pays,(position_etendu, position_abrege, gmt_time),ab_dico.get(id)]
+                return ex_dico
+            except IOError as e:
+                print ("I/O error({0}): {1}".format(e.errno, e.strerror))
+                print ("Unexpected error:", sys.exc_info()[0])  
+            except: #handle other exceptions such as attribute errors
+                print ("Unexpected error:", sys.exc_info()[0])            
+                print("erreur sur le fichier {}".format(ifilename))
+    return   
 
-    return ex_dico
-             
-pprint(merge(extended, abbreviated))
+exfilename=r"marine-e1-ext.json"
+abfilename=r"marine-e1-abb.json"
+     
+pprint(merge(exfilename, abfilename))
 
 #pprint(list(zip(extended, abbreviated)))
 #pprint(extended.sort())
