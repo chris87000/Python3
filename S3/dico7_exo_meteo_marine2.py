@@ -59,17 +59,28 @@ abbreviated = [ [ 227254910, 49.91799, -5.315172,'2013-10-08T22:59:00'],
   
 def merge(extended_tab, abbreviated_tab):
     #dico = defaultdict(list)
-    dico = {}
+    ex_dico = {}
+    ab_dico = {}
+    
+    for tab in abbreviated_tab:
+         #[ 227254910, 49.91799, -5.315172,'2013-10-08T22:59:00'],
+        (id, position_etendu, position_abrege, gmt_time) =  tab
+        #print((id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache))
+        if id not in ab_dico:
+            ab_dico[id]= (position_etendu, position_abrege, gmt_time)    
+          
     for tab in extended_tab:
         #id -> [ nom_bateau, code_pays, position_etendu, position_abrege ]
         # [ 227254910, 49.94479, -5.137455,'2013-10-08T21:51:00','LAURELINE','FR','','CHERBOURG']
         (id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache) =  tab
         #print((id, position_etendu, position_abrege, gmt_time, nom_bateau, code_pays, truc, port_attache))
-        if id not in dico:
-            dico[id]= [nom_bateau, code_pays,(position_etendu, position_abrege, gmt_time) ]
-    return(dico)
+        if id not in ex_dico:
+            ex_dico[id]= [nom_bateau, code_pays,(position_etendu, position_abrege, gmt_time),ab_dico.get(id)]
+
+    return ex_dico
              
 pprint(merge(extended, abbreviated))
 
-#pprint(zip(extended, abbreviated))
+#pprint(list(zip(extended, abbreviated)))
+#pprint(extended.sort())
       
