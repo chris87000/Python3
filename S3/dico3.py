@@ -33,7 +33,7 @@ for x, y in tuples:
 for key, value in resultat.items():
     print(key, value) 
     
-print("**"*20)
+print("--"*20)
 s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
 d = defaultdict(list)
 print(type(s))
@@ -41,7 +41,7 @@ for k, v in s:
     d[k].append(v)
 print(d.items())    
 
-print("**"*20)
+print("--"*20)
 compteurs = defaultdict(int)
 phrase = "une phrase dans laquelle on veut compter les caractères"
 for c in phrase:
