@@ -12,14 +12,23 @@
 import os
 import sys
 from pprint import pprint
+import re
 
 filename =r"data/setref1.txt"
 def read_set(filename):
-    with open(extended_file, "r", encoding='utf-8') as lines:
+    with open(filename, "r", encoding='utf-8') as lines:
         try:
+            ensemble = set()
+            tab=[]
             for line in lines :
-                print("")
-                
+                 pattern = re.compile(r"([\b\d\b]+)", re.UNICODE)
+                 sd = pattern.findall(line)
+                 #print(sd, "," , type(sd))
+                 tab.append(sd[0])
+            tab.sort()
+            ensemble = set(tab)
+            print(tab, "," , type(tab))
+            print("ensemble:\n ", ensemble)
             return 
         except IOError as e:
             print ("I/O error({0}): {1}".format(e.errno, e.strerror))
@@ -27,4 +36,7 @@ def read_set(filename):
         except: #handle other exceptions such as attribute errors
             print ("Unexpected error:", sys.exc_info()[0])            
             print("erreur sur le fichier {}".format(ifilename))
-    return  
+    return 
+
+
+read_set(filename) 
