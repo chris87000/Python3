@@ -29,7 +29,7 @@ def read_set(filename):
             ensemble = set(tab)
             print(tab, "," , type(tab))
             print("ensemble:\n ", ensemble)
-            return 
+            return ensemble
         except IOError as e:
             print ("I/O error({0}): {1}".format(e.errno, e.strerror))
             print ("Unexpected error:", sys.exc_info()[0])  
