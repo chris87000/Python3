@@ -31,7 +31,7 @@ def search_in_set(filename_reference, filename):
                      tabref.append(sd[0])
                 tabref.sort()
                 ensemble = set(tabref)
-                
+                pprint(ensemble)
                 for line in lines:
                     pattern = re.compile(r"([\b\d\b]+)", re.UNICODE)
                     sd = pattern.findall(line)
